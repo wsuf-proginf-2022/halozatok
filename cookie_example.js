@@ -2,8 +2,11 @@ const http = require("http");
 const parseCookies = require("./parseCookies");
 
 const server = http.createServer((request, response) => {
-  response.writeHead(200, { "Content-Type": "text/html" });
-  response.write("Hello, World!");
+  response.writeHead(200, {
+    "Content-Type": "text/plain",
+    "Set-Cookie": "mycookie=test",
+  });
+  response.write("<h1>Hello, World!</h1>");
   response.end();
 });
 
