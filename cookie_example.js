@@ -2,11 +2,19 @@ const http = require("http");
 const parseCookies = require("./parseCookies");
 
 const server = http.createServer((request, response) => {
-  response.writeHead(200, {
-    "Content-Type": "text/plain",
-    "Set-Cookie": "mycookie=test",
-  });
-  response.write("<h1>Hello, World!</h1>");
+  // read cookies
+  const cookies = parseCookies(request);
+  if (cookies.mycookie !== "test") {
+    response.writeHead(200, {
+      "Content-Type": "text/plain",
+      // set cookie
+      "Set-Cookie": "mycookie=test",
+    });
+    response.write("<h1>Hello, First time!</h1>");
+    response.end();
+    return;
+  }
+  response.write("<h1>Hello, again!</h1>");
   response.end();
 });
 
