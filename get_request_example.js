@@ -15,14 +15,14 @@ const server = http.createServer((request, response) => {
   if (request.url.startsWith("/results")) {
     const query = url.parse(request.url, true).query;
     console.log("query: " + JSON.stringify(query));
-    if (query) {
+    if (query?.search) {
       response.writeHead(200, { "Content-Type": "text/html" });
       response.write(`
         <h1>Search results for: ${query.search}</h1>
         `);
       response.end();
     } else {
-      response.writeHead(404, { "Content-Type": "text/html" });
+      response.writeHead(404);
       response.end();
     }
   }

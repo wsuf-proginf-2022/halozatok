@@ -6,7 +6,7 @@ const server = http.createServer((request, response) => {
   const cookies = parseCookies(request);
   if (cookies.mycookie !== "test") {
     response.writeHead(200, {
-      "Content-Type": "text/plain",
+      "Content-Type": "text/html",
       // set cookie
       "Set-Cookie": "mycookie=test",
     });
